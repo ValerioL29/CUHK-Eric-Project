@@ -1,0 +1,106 @@
+Search Graph Visits and Values Log
+Root YAML: experiments/reasoning/pipelines/cuad.yaml
+Max iterations: 40
+==================================================
+
+==================================================
+ITERATION 0
+==================================================
+Action Performance Statistics:
+- hierarchical_reduce: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- clarify_instructions: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- doc_chunking: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- arbitrary_rewrite: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- doc_chunking_topk: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- map_reduce_fusion: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- deterministic_doc_compression: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- reduce_gleaning: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- gleaning: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- change model cost: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- change to gpt-4o-mini: 0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- chunk_header_summary: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- isolating_subtasks: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- operator_fusion: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- reduce_chaining: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- doc_summarization: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- swap_with_code: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- chaining: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- cascade_filtering: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- take_head_tail: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+
+Tree Structure:
+Node ID: 0, Visits: 1, Value: 0, Action: ROOT
+  Node ID: 6, Visits: 1, Value: 0, Action: change to gpt-4o-mini
+
+Total search cost: $0.00
+
+==================================================
+ITERATION 1
+==================================================
+Action Performance Statistics:
+- hierarchical_reduce: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- clarify_instructions: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- doc_chunking: 1.0 uses, avg change in cost: +0.04, avg change in accuracy: +0.0886
+- arbitrary_rewrite: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- doc_chunking_topk: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- map_reduce_fusion: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- deterministic_doc_compression: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- reduce_gleaning: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- gleaning: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- change model cost: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- change to gpt-4o-mini: 0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- chunk_header_summary: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- isolating_subtasks: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- operator_fusion: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- reduce_chaining: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- doc_summarization: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- swap_with_code: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- chaining: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- cascade_filtering: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- take_head_tail: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+
+Tree Structure:
+Node ID: 0, Visits: 5, Value: 0.08856904276275007, Action: ROOT
+  Node ID: 6, Visits: 5, Value: 0.08856904276275007, Action: change to gpt-4o-mini
+    Node ID: 7, Visits: 1, Value: 0.08856904276275007, Action: doc_chunking
+
+Total search cost: $0.59
+
+==================================================
+ITERATION 2
+==================================================
+Action Performance Statistics:
+- hierarchical_reduce: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- clarify_instructions: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- doc_chunking: 1.0 uses, avg change in cost: +0.04, avg change in accuracy: +0.0886
+- arbitrary_rewrite: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- doc_chunking_topk: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0061
+- map_reduce_fusion: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- deterministic_doc_compression: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- reduce_gleaning: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- gleaning: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- change model cost: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- change to gpt-4o-mini: 0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- chunk_header_summary: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- isolating_subtasks: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- operator_fusion: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- reduce_chaining: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- doc_summarization: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- swap_with_code: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- chaining: 1.0 uses, avg change in cost: +0.00, avg change in accuracy: +0.0000
+- cascade_filtering: 0.0 uses, avg change in cost: Unknown (never tried), avg change in accuracy: Unknown (never tried)
+- take_head_tail: 1.0 uses, avg change in cost: -0.07, avg change in accuracy: -0.2510
+
+Tree Structure:
+Node ID: 0, Visits: 11, Value: 0.24392347364621483, Action: ROOT
+  Node ID: 6, Visits: 11, Value: 0.24392347364621483, Action: change to gpt-4o-mini
+    Node ID: 7, Visits: 1, Value: 0.08856904276275007, Action: doc_chunking
+    Node ID: 6-2-acc, Visits: 0, Value: 0, Action: doc_chunking_topk
+    Node ID: 8, Visits: 1, Value: 0.15535443088346476, Action: take_head_tail
+
+Total search cost: $0.98
+Agent failed with error: No applicable action found for expansion. Action space may be exhausted or all actions are inapplicable.                                                                            
+           Node 0 is fully explored, selecting best child                                                                                                                                                               
+           Child outputs/cuad_moar/cuad_gpt-4o-mini.yaml: visits = 10255, value = 0.24392347364621483                                                                                                                   
+           [Thread 6222262272] SELECTED NODE: 6                                                                                                                                                                         
+           [Thread 6222262272] EXPANSION

@@ -1,0 +1,71 @@
+default_model: gpt-4o-mini
+bypass_cache: true
+datasets:
+  articles:
+    type: file
+    path: blackvault.json
+operations:
+  - name: extract_event_type
+    type: map
+    litellm_completion_kwargs:
+      temperature: 0.0
+    output:
+      schema:
+        event_type: str
+    prompt:
+      "Given the following document content from the black vault, identify and
+      extract the type of extraterrestrial or paranormal event being described:
+
+
+      {{ input.all_content }}
+
+
+      Provide a single, specific event type category.
+
+      "
+  - name: head_only_trim_all_content_for_locations
+    type: code_map
+    code:
+      "def transform(input_doc):\n    all_content_content = input_doc.get('all_content',\
+      \ '')\n    words = all_content_content.split()\n\n    if len(words) <= 220:\n\
+      \        # Document is short enough, keep as is\n        truncated = all_content_content\n\
+      \    else:\n        head = ' '.join(words[:220])\n        if 0 > 0:\n        \
+      \    tail = ' '.join(words[-0:])\n            truncated = head + ' ... ' + tail\n\
+      \        else:\n            truncated = head\n\n    return {'all_content': truncated}"
+  - name: aggregate_locations
+    type: reduce
+    reduce_key: event_type
+    litellm_completion_kwargs:
+      temperature: 0.0
+    output:
+      schema:
+        locations: list[str]
+    prompt:
+      'For extraterrestrial/paranormal events of type "{{ reduce_key }}", analyze
+      these incident reports:
+
+
+      {% for report in inputs %}
+
+      Report {{ loop.index }}:
+
+      {{ report.all_content }}
+
+      {% endfor %}
+
+
+      Extract and list all unique locations of observation mentioned across these reports.
+      They should be real locations on Earth.
+
+      '
+pipeline:
+  steps:
+    - name: analyze_events
+      input: articles
+      operations:
+        - extract_event_type
+        - head_only_trim_all_content_for_locations
+        - aggregate_locations
+  output:
+    type: file
+    path: outputs/blackvault.json

@@ -1,0 +1,109 @@
+datasets:
+  medec_data:
+    type: file
+    path: medec.json
+default_model: gpt-4.1-nano
+bypass_cache: true
+operations:
+  - name: extract_case_head80_tail40
+    type: code_map
+    code:
+      "def transform(input_doc):\n    Text_content = input_doc.get('Text', '')\n\
+      \    words = Text_content.split()\n\n    if len(words) <= 120:\n        # Document\
+      \ is short enough, keep as is\n        truncated = Text_content\n    else:\n \
+      \       head = ' '.join(words[:80])\n        if 40 > 0:\n            tail = '\
+      \ '.join(words[-40:])\n            truncated = head + ' ... ' + tail\n       \
+      \ else:\n            truncated = head\n\n    return {'Text': truncated}"
+  - name: medical_error_detection
+    type: map
+    litellm_completion_kwargs:
+      temperature: 0.0
+    output:
+      schema:
+        is_error: bool
+        error_sentence: str
+        corrected_sentence: str
+    prompt:
+      'The following is a medical narrative about a patient. You are a skilled
+      medical doctor reviewing the clinical text.
+
+      The text is either correct or contains one error. The text has one sentence per
+      line. Each line starts with the sentence ID,
+
+      followed by a space, then the sentence to check. Check every sentence of the text.
+      If the text is correct, return the
+
+      following output: is_error=false, error_sentence="", corrected_sentence="". If
+      the text has a medical error related to treatment,
+
+      management, cause, or diagnosis, return the sentence id of the sentence containing
+      the error, the original sentence, and a corrected version of the sentence.
+
+      Finding and correcting the error requires medical knowledge and reasoning.
+
+
+      Here is an example:
+
+      0 A 35-year-old woman presents to her physician with a complaint of pain and stiffness
+      in her hands.
+
+      1 She says that the pain began 6 weeks ago a few days after she had gotten over
+      a minor upper respiratory infection.
+
+      2 She has no history of trauma.
+
+      3 She has no significant past medical history.
+
+      4 On examination, there is swelling and tenderness of the metacarpophalangeal
+      and proximal interphalangeal joints of both hands.
+
+      5 The wrists are also swollen and tender.
+
+      6 There is no evidence of joint deformity.
+
+      7 Laboratory studies show a positive rheumatoid factor and elevated erythrocyte
+      sedimentation rate.
+
+      8 The C-reactive protein is elevated.
+
+      9 Bilateral radiographs of the hands demonstrate mild periarticular osteopenia
+      around the left fifth metacarpophalangeal joint.
+
+      10 Methotrexate is given.
+
+
+      In this example, the error is in sentence 10: "Methotrexate is given." The correction
+      is: "Prednisone is given."
+
+      The output is:
+
+      is_error=true, error_sentence="Methotrexate is given.", corrected_sentence="Prednisone
+      is given."
+
+
+      End of Example.
+
+
+      Now review the following medical text:
+
+      {{ input.Text }}
+
+
+      Return your analysis in the following format:
+
+      - If no error: is_error=false, error_sentence="", corrected_sentence=""
+
+      - If error found: is_error=true, error_sentence="[original sentence with error]",
+      corrected_sentence="[corrected sentence]"
+
+      '
+pipeline:
+  steps:
+    - name: error_detection
+      input: medec_data
+      operations:
+        - extract_case_head80_tail40
+        - medical_error_detection
+  output:
+    type: file
+    path: outputs/medec.json

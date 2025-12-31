@@ -1,0 +1,51 @@
+default_model: gpt-4o-mini
+bypass_cache: true
+datasets:
+  articles:
+    type: file
+    path: "blackvault.json"
+
+operations:
+  - name: extract_event_type
+    type: map
+    litellm_completion_kwargs:
+      temperature: 0.0
+    output:
+      schema:
+        event_type: str
+    prompt: |
+      Given the following document content from the black vault, identify and extract the type of extraterrestrial or paranormal event being described:
+
+      {{ input.all_content }}
+
+      Provide a single, specific event type category.
+
+  - name: aggregate_locations
+    type: reduce
+    reduce_key: event_type
+    litellm_completion_kwargs:
+      temperature: 0.0
+    output:
+      schema:
+        locations: "list[str]"
+    prompt: |
+      For extraterrestrial/paranormal events of type "{{ reduce_key }}", analyze these incident reports:
+
+      {% for report in inputs %}
+      Report {{ loop.index }}:
+      {{ report.all_content }}
+      {% endfor %}
+
+      Extract and list all unique locations of observation mentioned across these reports. They should be real locations on Earth.
+
+pipeline:
+  steps:
+    - name: analyze_events
+      input: articles
+      operations:
+        - extract_event_type
+        - aggregate_locations
+
+  output:
+    type: file
+    path: "outputs/blackvault_baseline.json"

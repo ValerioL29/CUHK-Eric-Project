@@ -71,7 +71,7 @@ NEXT_PUBLIC_BACKEND_PORT=8000
 NEXT_PUBLIC_HOSTED_DOCWRANGLER=false' > website/.env.local
 # Install dependencies:
 uv run pre-commit install
-uv sync --all-groups --all-extras
+uv sync --all-groups --all-extras --active
 make install-ui
 # Start the development server:
 make run-ui-dev
