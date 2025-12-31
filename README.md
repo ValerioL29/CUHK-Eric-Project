@@ -72,8 +72,23 @@ NEXT_PUBLIC_HOSTED_DOCWRANGLER=false' > website/.env.local
 # Install dependencies:
 uv run pre-commit install
 uv sync --all-groups --all-extras --active
+uv pip install -r experiments/reasoning/requirements.txt
 make install-ui
 # Start the development server:
 make run-ui-dev
 # Visit http://localhost:3000/playground to access the interactive UI.
+```
+
+Set up your Azure API credentials (required for LLM calls):
+
+```bash
+export AZURE_API_KEY="your_key_here"
+export AZURE_API_BASE="your_endpoint_here" 
+export AZURE_API_VERSION="your_version_here"
+```
+
+Or, you can comment all the Azure prefix and usage in the `litellm.completion` function and use OpenAI APIs:
+
+```bash
+export OPENAI_API_KEY="your_key"
 ```

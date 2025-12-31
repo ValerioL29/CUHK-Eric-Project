@@ -60,6 +60,6 @@ These constraints make it viable *only* for highly structured documents with pre
 
 **Dataset Samples**
 
-![image-20251231114823890](/Users/ken/Workspaces/ResearchProjects/CUHK-Eric-Project/break_moar/FAILURE_ANALYSIS.assets/image-20251231114823890.png)
+![image-20251231114823890](FAILURE_ANALYSIS.assets/image-20251231114823890.png)
 
-![image-20251231120904453](/Users/ken/Workspaces/ResearchProjects/CUHK-Eric-Project/break_moar/FAILURE_ANALYSIS.assets/image-20251231120904453.png)
+![image-20251231120904453](FAILURE_ANALYSIS.assets/image-20251231120904453.png)
